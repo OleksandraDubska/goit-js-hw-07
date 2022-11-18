@@ -24,17 +24,16 @@ function onModalOpen(event) {
     }
 
     const modal = basicLightbox.create(`
-        <div class="modal">
             <img src="${event.target.dataset.source}">
-        </div>
-         `,
+        `,
         {
             onShow: (modal) => {
                 document.addEventListener('keydown', onModalClose);
+                console.log(event.target);
             },
             onClose: (modal) => {
-                window.removeEventListener('click', () => modal.close());
                 document.removeEventListener('keydown', onModalClose);
+                console.log(event.target);
             },
         },
     );
