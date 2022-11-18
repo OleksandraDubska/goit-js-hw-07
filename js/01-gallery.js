@@ -15,12 +15,10 @@ const galleryCards = galleryItems.map(({ preview, original, description }) =>
         ).join('');
 
 galleryRef.innerHTML = galleryCards;
-
 galleryRef.addEventListener('click', onModalOpen);
 
 function onModalOpen(event) {
     event.preventDefault();
-
     if (event.target.nodeName !== "IMG") {
         return
     }
@@ -32,21 +30,22 @@ function onModalOpen(event) {
          `,
         {
             onShow: (modal) => {
-                modal.element().onclick = modal.close;
-            }
+                document.addEventListener('keydown', onModalClose);
+            },
+            onClose: (modal) => {
+                window.removeEventListener('click', () => modal.close());
+                document.removeEventListener('keydown', onModalClose);
+            },
         },
     );
-
     modal.show();
 
     function onModalClose(event) {
         if (event.code !== "Escape") {
             return;
         }
-
+        
         modal.close();
-    }
-
-    window.addEventListener('keydown', onModalClose);
+    }  
 }
     
