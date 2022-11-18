@@ -29,11 +29,9 @@ function onModalOpen(event) {
         {
             onShow: (modal) => {
                 document.addEventListener('keydown', onModalClose);
-                console.log(event.target);
             },
             onClose: (modal) => {
                 document.removeEventListener('keydown', onModalClose);
-                console.log(event.target);
             },
         },
     );

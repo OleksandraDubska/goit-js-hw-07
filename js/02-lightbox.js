@@ -8,13 +8,12 @@ const galleryCards = galleryItems.map(({ preview, original, description }) =>
         ).join('');
 
 galleryRef.innerHTML = galleryCards;
+galleryRef.addEventListener('click', onModalOpen);
 
 let modal = new SimpleLightbox('.gallery a', { 
     captionsData: 'alt',
     captionDelay: 250,
 });
-
-galleryRef.addEventListener('click', onModalOpen);
 
 function onModalOpen(event) {
     event.preventDefault();
